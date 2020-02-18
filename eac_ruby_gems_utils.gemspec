@@ -14,4 +14,6 @@ Gem::Specification.new do |s|
   s.license     = 'GPL3'
 
   s.files = Dir['{lib}/**/*', 'LICENSE', 'README.rdoc']
+
+  s.add_dependency 'eac_ruby_utils', '~> 0.19'
 end
