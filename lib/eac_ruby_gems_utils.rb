@@ -1,4 +1,5 @@
-module EacRubyGemsUtils
-end
+require 'eac_ruby_utils/core_ext'
 
-require 'eac_ruby_gems_utils/version'
+module EacRubyGemsUtils
+  require_sub(__FILE__)
+end
