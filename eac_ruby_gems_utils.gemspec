@@ -15,5 +15,5 @@ Gem::Specification.new do |s|
 
   s.files = Dir['{lib}/**/*', 'LICENSE', 'README.rdoc']
 
-  s.add_dependency 'eac_ruby_utils', '~> 0.19'
+  s.add_dependency 'eac_ruby_utils', '~> 0.20'
 end
