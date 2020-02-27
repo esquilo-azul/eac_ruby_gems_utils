@@ -5,7 +5,7 @@ require 'eac_ruby_utils/fs_cache'
 require 'eac_ruby_utils/listable'
 require 'eac_ruby_utils/on_clean_ruby_environment'
 
-module EacRubyUtils
+module EacRubyGemsUtils
   module Tests
     class Base
       include ::EacRubyUtils::Listable
