@@ -4,7 +4,7 @@ require 'eac_ruby_gems_utils/tests/base'
 
 module EacRubyGemsUtils
   module Tests
-    class Minitest < ::EacRubyGemsUtils::Minitest
+    class Minitest < ::EacRubyGemsUtils::Tests::Base
       def bundle_exec_args
         %w[rake test]
       end
