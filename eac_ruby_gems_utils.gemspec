@@ -16,4 +16,6 @@ Gem::Specification.new do |s|
   s.files = Dir['{lib}/**/*', 'LICENSE', 'README.rdoc']
 
   s.add_dependency 'eac_ruby_utils', '~> 0.20'
+
+  s.add_development_dependency 'eac_ruby_gem_support', '~> 0.1'
 end
