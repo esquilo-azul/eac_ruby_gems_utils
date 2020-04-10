@@ -19,7 +19,6 @@ module EacRubyGemsUtils
     def bundle(*args)
       ::EacRubyUtils::Envs.local.command('bundle', *args)
                           .envvar('BUNDLE_GEMFILE', gemfile_path)
-                          .chdir(root)
     end
 
     def gemfile_lock_gem_version(gem_name)

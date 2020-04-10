@@ -6,11 +6,15 @@ module EacRubyGemsUtils
   module Tests
     class Minitest < ::EacRubyGemsUtils::Tests::Base
       def bundle_exec_args
-        %w[rake test]
+        ['rake', '--rakefile', gem.rakefile_path, 'test']
       end
 
       def dependency_gem
         'minitest'
+      end
+
+      def elegible?
+        super && gem.rakefile_path.exist?
       end
 
       def test_directory
