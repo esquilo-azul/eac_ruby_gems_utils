@@ -43,6 +43,7 @@ module EacRubyGemsUtils
 
       def result_uncached
         return RESULT_NONEXISTENT unless elegible?
+
         bundle_run ? RESULT_SUCCESSFUL : RESULT_FAILED
       end
 
