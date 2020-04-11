@@ -44,12 +44,12 @@ module EacRubyGemsUtils
       def result_uncached
         return RESULT_NONEXISTENT unless elegible?
 
-        bundle_run ? RESULT_SUCCESSFUL : RESULT_FAILED
+        exec_run ? RESULT_SUCCESSFUL : RESULT_FAILED
       end
 
-      def bundle_run
+      def exec_run
         r = ::EacRubyUtils.on_clean_ruby_environment do
-          gem.bundle('exec', *bundle_exec_args).execute
+          gem.send(exec_method, *exec_args).execute
         end
         stdout_cache.write(r[:stdout])
         stderr_cache.write(r[:stderr])
