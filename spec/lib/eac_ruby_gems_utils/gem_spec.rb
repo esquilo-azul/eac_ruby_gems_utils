@@ -11,4 +11,10 @@ require 'eac_ruby_gems_utils/gem'
       expect(mygem.bundle('exec', 'myrunner').execute!).to include('My Runner')
     end
   end
+
+  describe '#rake' do
+    specify do
+      expect(mygem.rake('mygem:stub').execute!).to include('Stub!')
+    end
+  end
 end

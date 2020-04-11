@@ -29,6 +29,12 @@ module EacRubyGemsUtils
       ::Bundler::LockfileParser.new(::Bundler.read_file(gemfile_lock_path))
     end
 
+    def rake(*args)
+      raise "File \"#{rakefile_path}\" does not exist" unless rakefile_path.exist?
+
+      bundle('exec', 'rake', '--rakefile', rakefile_path, *args)
+    end
+
     private
 
     def gemfile_path_uncached
@@ -37,6 +43,10 @@ module EacRubyGemsUtils
 
     def gemfile_lock_path_uncached
       root.join('Gemfile.lock')
+    end
+
+    def rakefile_path_uncached
+      root.join('Rakefile')
     end
   end
 end
