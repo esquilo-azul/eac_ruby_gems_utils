@@ -48,9 +48,13 @@ module EacRubyGemsUtils
       end
 
       def exec_run
-        r = ::EacRubyUtils.on_clean_ruby_environment do
-          gem.send(exec_method, *exec_args).execute
+        ::EacRubyUtils.on_clean_ruby_environment do
+          ::Dir.chdir(gem.root) { gem.send(exec_method, *exec_args).execute }
         end
+      end
+
+      def exec_run_with_log
+        r = exec_run
         stdout_cache.write(r[:stdout])
         stderr_cache.write(r[:stderr])
         r[:exit_code].zero?
