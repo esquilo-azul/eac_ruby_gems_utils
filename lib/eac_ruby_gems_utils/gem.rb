@@ -5,6 +5,7 @@ require 'eac_ruby_utils/envs'
 
 module EacRubyGemsUtils
   class Gem
+    require_sub __FILE__
     enable_simple_cache
 
     common_constructor :root
@@ -17,8 +18,7 @@ module EacRubyGemsUtils
     end
 
     def bundle(*args)
-      ::EacRubyUtils::Envs.local.command('bundle', *args)
-                          .envvar('BUNDLE_GEMFILE', gemfile_path)
+      ::EacRubyGemsUtils::Gem::Command.new(self, %w[bundle] + args).envvar_gemfile
     end
 
     def gemfile_lock_gem_version(gem_name)
