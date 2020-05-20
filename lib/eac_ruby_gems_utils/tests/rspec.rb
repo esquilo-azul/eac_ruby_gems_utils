@@ -5,12 +5,8 @@ require 'eac_ruby_gems_utils/tests/base'
 module EacRubyGemsUtils
   module Tests
     class Rspec < ::EacRubyGemsUtils::Tests::Base
-      def exec_args
-        %w[exec rspec]
-      end
-
-      def exec_method
-        :bundle
+      def bundle_exec_args
+        %w[rspec]
       end
 
       def dependency_gem

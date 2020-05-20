@@ -48,9 +48,7 @@ module EacRubyGemsUtils
       end
 
       def exec_run
-        ::EacRubyUtils.on_clean_ruby_environment do
-          ::Dir.chdir(gem.root) { gem.send(exec_method, *exec_args).execute }
-        end
+        gem.bundle('exec', *bundle_exec_args).chdir_root.execute
       end
 
       def exec_run_with_log
