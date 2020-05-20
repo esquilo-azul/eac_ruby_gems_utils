@@ -44,7 +44,7 @@ module EacRubyGemsUtils
       def result_uncached
         return RESULT_NONEXISTENT unless elegible?
 
-        exec_run ? RESULT_SUCCESSFUL : RESULT_FAILED
+        exec_run_with_log ? RESULT_SUCCESSFUL : RESULT_FAILED
       end
 
       def exec_run
