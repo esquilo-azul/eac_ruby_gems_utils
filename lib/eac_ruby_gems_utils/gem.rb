@@ -8,6 +8,8 @@ module EacRubyGemsUtils
     require_sub __FILE__
     enable_simple_cache
 
+    GEMSPEC_EXTNAME = '.gemspec'
+
     common_constructor :root do
       @root = ::Pathname.new(root).expand_path
     end
@@ -28,6 +30,18 @@ module EacRubyGemsUtils
       ::Bundler::LockfileParser.new(::Bundler.read_file(gemfile_lock_path))
     end
 
+    def name
+      name_by_gemspec || name_by_path
+    end
+
+    def name_by_gemspec
+      gemspec_path.if_present { |v| v.basename(GEMSPEC_EXTNAME).to_path }
+    end
+
+    def name_by_path
+      root.basename.to_s
+    end
+
     def rake(*args)
       raise "File \"#{rakefile_path}\" does not exist" unless rakefile_path.exist?
 
@@ -42,6 +56,10 @@ module EacRubyGemsUtils
 
     def gemfile_lock_path_uncached
       root.join('Gemfile.lock')
+    end
+
+    def gemspec_path_uncached
+      ::Pathname.glob("#{root.to_path}/*#{GEMSPEC_EXTNAME}").first
     end
 
     def rakefile_path_uncached
