@@ -8,13 +8,12 @@ module EacRubyGemsUtils
     require_sub __FILE__
     enable_simple_cache
 
-    common_constructor :root
-    set_callback :initialize, :after do
+    common_constructor :root do
       @root = ::Pathname.new(root).expand_path
     end
 
     def to_s
-      root.basename.to_s
+      name
     end
 
     def bundle(*args)
