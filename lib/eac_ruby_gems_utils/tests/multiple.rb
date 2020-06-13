@@ -9,11 +9,15 @@ module EacRubyGemsUtils
     class Multiple
       enable_console_speaker
       enable_simple_cache
-      common_constructor :gems
+      common_constructor :gems, :options, default: [{}]
       set_callback :initialize, :after, :run
 
       def ok?
         failed_tests.none?
+      end
+
+      def only
+        options[:only]
       end
 
       private
@@ -33,7 +37,9 @@ module EacRubyGemsUtils
       end
 
       def decorated_gems_uncached
-        gems.map { |gem| DecoratedGem.new(gem) }
+        r = gems
+        r = r.select { |gem| only.include?(gem.name) } if only.present?
+        r.map { |gem| DecoratedGem.new(gem) }
       end
 
       def failed_tests_uncached
