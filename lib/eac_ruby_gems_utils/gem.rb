@@ -23,6 +23,11 @@ module EacRubyGemsUtils
       ::EacRubyGemsUtils::Gem::Command.new(self, %w[bundle] + args).envvar_gemfile
     end
 
+    # @return A [Pathname] array with relative paths from root listed in gemspec's .file directive.
+    def files
+      gemspec.files.map(&:to_pathname)
+    end
+
     def gemfile_lock_gem_version(gem_name)
       gemfile_lock_content.specs.find { |gem| gem.name == gem_name }.if_present(&:version)
     end
