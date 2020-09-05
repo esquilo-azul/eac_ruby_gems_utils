@@ -28,13 +28,8 @@ module EacRubyGemsUtils
       end
 
       def prepare_all_gems
-        infom 'Bundling all gems...'
-        decorated_gems.each do |gem|
-          next unless gem.gemfile_path.exist?
-
-          infov 'Bundle install', gem
-          gem.bundle.execute!
-        end
+        infom 'Preparing all gems...'
+        decorated_gems.each(&:prepare)
       end
 
       def decorated_gems_uncached
