@@ -2,6 +2,7 @@
 
 require 'eac_ruby_utils/core_ext'
 require 'eac_ruby_utils/envs'
+require 'rubygems'
 
 module EacRubyGemsUtils
   class Gem
@@ -65,6 +66,10 @@ module EacRubyGemsUtils
 
     def gemfile_lock_path_uncached
       gemfile_path.basename_sub { |b| "#{b}.lock" }
+    end
+
+    def gemspec_uncached
+      ::Gem::Specification.load(gemspec_path.to_path)
     end
 
     def gemspec_path_uncached
