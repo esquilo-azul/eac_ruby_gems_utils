@@ -7,6 +7,7 @@ require 'eac_ruby_utils/core_ext'
 module EacRubyGemsUtils
   module Tests
     class Multiple
+      require_sub __FILE__
       enable_console_speaker
       enable_simple_cache
       common_constructor :gems, :options, default: [{}]
@@ -81,24 +82,6 @@ module EacRubyGemsUtils
         def tests
           [::EacRubyGemsUtils::Tests::Minitest.new(__getobj__),
            ::EacRubyGemsUtils::Tests::Rspec.new(__getobj__)]
-        end
-      end
-
-      class Result
-        common_constructor :result
-
-        COLORS = {
-          ::EacRubyGemsUtils::Tests::Base::RESULT_FAILED => :red,
-          ::EacRubyGemsUtils::Tests::Base::RESULT_NONEXISTENT => :white,
-          ::EacRubyGemsUtils::Tests::Base::RESULT_SUCCESSFUL => :green
-        }.freeze
-
-        def tag
-          result.to_s.send(color)
-        end
-
-        def color
-          COLORS.fetch(result)
         end
       end
     end
