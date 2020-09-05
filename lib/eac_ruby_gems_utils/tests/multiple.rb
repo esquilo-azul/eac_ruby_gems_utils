@@ -27,7 +27,7 @@ module EacRubyGemsUtils
         decorated_gems.flat_map(&:tests)
       end
 
-      def bundle_all_gems
+      def prepare_all_gems
         infom 'Bundling all gems...'
         decorated_gems.each do |gem|
           next unless gem.gemfile_path.exist?
@@ -62,7 +62,7 @@ module EacRubyGemsUtils
 
       def run
         start_banner
-        bundle_all_gems
+        prepare_all_gems
         test_all_gems
         final_results_banner
       end
