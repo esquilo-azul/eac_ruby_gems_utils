@@ -77,13 +77,6 @@ module EacRubyGemsUtils
           infov test, Result.new(test.result).tag
         end
       end
-
-      class DecoratedGem < ::SimpleDelegator
-        def tests
-          [::EacRubyGemsUtils::Tests::Minitest.new(__getobj__),
-           ::EacRubyGemsUtils::Tests::Rspec.new(__getobj__)]
-        end
-      end
     end
   end
 end
